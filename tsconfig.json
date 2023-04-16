@@ -1,0 +1,10 @@
+{
+  "exclude": ["**/vite.config.ts", "node_modules", "dist", "src/**/*.spec.ts"],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "rootDir": "src",
+    "target": "ESNext",
+    "module": "ESNext",
+    "declaration": true,
+  }
+}
