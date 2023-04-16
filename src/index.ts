@@ -1,4 +1,64 @@
+/**
+ * 
+ * This (ESM)  module provides a collection of functions for converting between pitch and frequency units.
+ * 
+ * ## Conversion Overview
+ * |                  | → hz                  | → ratio                  | → semitones                  | → cents                  | → named               | → note object         |
+ * | :--------------- | :-------------------- | :----------------------- | :--------------------------- | :----------------------- | :-------------------- | :-------------------- |
+ * | hz&nbsp;→        | _N/A_                 | {@link hzToRatio}        | {@link hzToSemitones}        | {@link hzToCents}        | {@link hzToNoteName}  | {@link hzToNoteObject}  |
+ * | ratio&nbsp;→     | {@link ratioToHz}     | _N/A_                    | {@link ratioToSemitones}     | {@link ratioToCents}     | _Unimplemented_       | _Unimplemented_       |
+ * | semitones&nbsp;→ | {@link semitonesToHz} | {@link semitonesToRatio} | _N/A_                        | {@link semitonesToCents} | _Unimplemented_       | _Unimplemented_       |
+ * | cents&nbsp;→     | {@link centsToHz}     | {@link centsToRatio}     | {@link centsToSemitones}     | _N/A_                    | _Unimplemented_       | _Unimplemented_       |
+ * | named&nbsp;→     | {@link namedNoteToHz} | {@link namedNoteToRatio} | {@link namedNoteToSemitones} | {@link namedNoteToCents} | _N/A_                 | _N/A_                 |
+ * 
+ * ## Installation
+ * ```bash
+ * npm install k-h-z
+ * ```
+ * @packageDocumentation
+ */
+
+/**
+ * A note name, e.g. `C4`, `A♯3`, `F♯5`.
+ * Also accepts lowercase and keyboard-accessible accidentals like `bb3` and `b#3`.
+ */
+export type NoteName = string;
+/**
+ * A ratio, e.g. `1.5`, `2`, `0.5`.
+ * Supports positive numbers.
+ */
+export type Ratio = number;
+/**
+ * A semitone offset, e.g. `+3`, `-5`, `0`.
+ * Supports positive and negative numbers.
+ */
+export type Semitones = number;
+/**
+ * A frequency in Hz, e.g. `440`, `523.2511`, or `1600` (1.6kHz).
+ * Supports positive numbers.
+ */
+export type Hz = number;
+/**
+ * A frequency offset in cents, e.g. `+100`, `-200`, `0`.
+ * Supports positive and negative numbers.
+ */
+export type Cents = number
+/**
+ * 
+ */
+export type NoteObject = {
+  note: NoteName;
+  octave: number;
+  detune: Cents;
+}
+
+/**
+ * A4 frequency in Hz
+ */
 export const A4 = 440;
+/**
+ * Normalized note names in the chromatic scale, using sharps
+ */
 export const chromaticScale = [
   "C",
   "C♯",
@@ -13,6 +73,9 @@ export const chromaticScale = [
   "A♯",
   "B",
 ];
+/**
+ * Normalized note names in the chromatic scale, using flats
+ */
 export const chromaticScaleFlat = [
   "C",
   "D♭",
@@ -44,7 +107,7 @@ export const getNoteIndexInOctave = (note: string) => {
 };
 
 /**
- *
+ * Replaces keyboard-accessible accidentals with their unicode equivalents and makes note name uppercase.
  * @example ```js
  * cleanNoteName("C#4") // "C♯4"
  * cleanNoteName("bb4") // "B♭4"
@@ -115,8 +178,7 @@ export function centsToHz(cents: number, baseHz?: number) {
  * ```
  */
 export function namedNoteToSemitones(
-  /** note name, e.g. C4, A♯3, F♯5 */
-  note: string
+  note: NoteName
 ) {
   const cleanNote = cleanNoteName(note);
   const noteIndex = getNoteIndexInOctave(cleanNote.replace(/-?[0-9]+/g, ""));
@@ -130,8 +192,7 @@ export function namedNoteToSemitones(
   return semitone;
 }
 export function namedNoteToRatio(
-  /** note name, e.g. C4, A♯3, F♯5 */
-  note: string,
+  note: NoteName,
   baseNote: string = "A4",
 ) {
   return namedNoteToHz(note) / namedNoteToHz(baseNote);
@@ -214,7 +275,7 @@ export function hzToNoteName(
 export function hzToNoteObject(
   /** frequency of note in hertz */
   hz: number
-) {
+): NoteObject {
   const semitone = 12 * (Math.log(hz / 440) / Math.log(2)) + 69;
   const round = Math.round(semitone);
   const centRemainder =

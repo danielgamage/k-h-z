@@ -1,9 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
-
+import terser from '@rollup/plugin-terser';
 const config = {
-  plugins: [typescript({
-
-  })],
+  plugins: [typescript(), terser()],
   input: "./src/index.ts",
   output: {
     dir: "./dist",
