@@ -97,14 +97,14 @@ describe("from Hz", function () {
   });
   describe("hzToSemitones", function () {
     test("works between octaves", function () {
-      expect(khz.hzToSemitones(A4, C5)).toBeCloseTo(+3);
+      expect(khz.hzToSemitones(C5)).toBeCloseTo(+3);
     });
     test("works on positive octaves", function () {
-      expect(khz.hzToSemitones(A4, A4 * 2)).toEqual(+12);
-      expect(khz.hzToSemitones(A4 / 2, A4 * 2)).toEqual(+24);
+      expect(khz.hzToSemitones(A4 * 2)).toEqual(+12);
+      expect(khz.hzToSemitones(A4 * 2, A4 / 2)).toEqual(+24);
     });
     test("works on negative octaves", function () {
-      expect(khz.hzToSemitones(A4, A4 / 2)).toEqual(-12);
+      expect(khz.hzToSemitones(A4 / 2)).toEqual(-12);
     });
   });
 });
