@@ -8,6 +8,9 @@
   "exports": {
     ".": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rm -rf dist/* && rollup --config",
     "test": "vitest --config ./src/vite.config.js",
