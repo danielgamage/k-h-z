@@ -14,54 +14,54 @@ hzToSemitones(880, 440); // +12
 ```
 
 ## Conversion Overview
-|                  | → hz                  | → ratio                  | → semitones                  | → cents                  | → named               | → note object         |
-| :--------------- | :-------------------- | :----------------------- | :--------------------------- | :----------------------- | :-------------------- | :-------------------- |
-| hz&nbsp;→        | _N/A_                 | [hzToRatio](modules.md#hztoratio)        | [hzToSemitones](modules.md#hztosemitones)        | [hzToCents](modules.md#hztocents)        | [hzToNoteName](modules.md#hztonotename)  | [hzToNoteObject](modules.md#hztonoteobject)  |
-| ratio&nbsp;→     | [ratioToHz](modules.md#ratiotohz)     | _N/A_                    | [ratioToSemitones](modules.md#ratiotosemitones)     | [ratioToCents](modules.md#ratiotocents)     | _Unimplemented_       | _Unimplemented_       |
-| semitones&nbsp;→ | [semitonesToHz](modules.md#semitonestohz) | [semitonesToRatio](modules.md#semitonestoratio) | _N/A_                        | [semitonesToCents](modules.md#semitonestocents) | _Unimplemented_       | _Unimplemented_       |
-| cents&nbsp;→     | [centsToHz](modules.md#centstohz)     | [centsToRatio](modules.md#centstoratio)     | [centsToSemitones](modules.md#centstosemitones)     | _N/A_                    | _Unimplemented_       | _Unimplemented_       |
-| named&nbsp;→     | [namedNoteToHz](modules.md#namednotetohz) | [namedNoteToRatio](modules.md#namednotetoratio) | [namedNoteToSemitones](modules.md#namednotetosemitones) | [namedNoteToCents](modules.md#namednotetocents) | _N/A_                 | _N/A_                 |
+|                  | → hz                  | → ratio                  | → semitones                  | → cents                  | → named               | → note object          |
+| :--------------- | :-------------------- | :----------------------- | :--------------------------- | :----------------------- | :-------------------- | :--------------------- |
+| hz&nbsp;→        | _N/A_                 | [hzToRatio](#hztoratio)        | [hzToSemitones](#hztosemitones)        | [hzToCents](#hztocents)        | [hzToNoteName](#hztonotename)  | [hzToNoteObject](#hztonoteobject) |
+| ratio&nbsp;→     | [ratioToHz](#ratiotohz)     | _N/A_                    | [ratioToSemitones](#ratiotosemitones)     | [ratioToCents](#ratiotocents)     | _Unimplemented_       | _Unimplemented_        |
+| semitones&nbsp;→ | [semitonesToHz](#semitonestohz) | [semitonesToRatio](#semitonestoratio) | _N/A_                        | [semitonesToCents](#semitonestocents) | _Unimplemented_       | _Unimplemented_        |
+| cents&nbsp;→     | [centsToHz](#centstohz)     | [centsToRatio](#centstoratio)     | [centsToSemitones](#centstosemitones)     | _N/A_                    | _Unimplemented_       | _Unimplemented_        |
+| named&nbsp;→     | [namedNoteToHz](#namednotetohz) | [namedNoteToRatio](#namednotetoratio) | [namedNoteToSemitones](#namednotetosemitones) | [namedNoteToCents](#namednotetocents) | _N/A_                 | _Unimplemented_        |
 
 ## Table of contents
 
 ### Type Aliases
 
-- [Cents](modules.md#cents)
-- [Hz](modules.md#hz)
-- [NoteName](modules.md#notename)
-- [NoteObject](modules.md#noteobject)
-- [Ratio](modules.md#ratio)
-- [Semitones](modules.md#semitones)
+- [Cents](#cents)
+- [Hz](#hz)
+- [NoteName](#notename)
+- [NoteObject](#noteobject)
+- [Ratio](#ratio)
+- [Semitones](#semitones)
 
 ### Variables
 
-- [A4](modules.md#a4)
-- [chromaticScale](modules.md#chromaticscale)
-- [chromaticScaleFlat](modules.md#chromaticscaleflat)
+- [A4](#a4)
+- [chromaticScale](#chromaticscale)
+- [chromaticScaleFlat](#chromaticscaleflat)
 
 ### Functions
 
-- [centsToHz](modules.md#centstohz)
-- [centsToRatio](modules.md#centstoratio)
-- [centsToSemitones](modules.md#centstosemitones)
-- [cleanNoteName](modules.md#cleannotename)
-- [formatHz](modules.md#formathz)
-- [getNoteIndexInOctave](modules.md#getnoteindexinoctave)
-- [hzToCents](modules.md#hztocents)
-- [hzToNoteName](modules.md#hztonotename)
-- [hzToNoteObject](modules.md#hztonoteobject)
-- [hzToRatio](modules.md#hztoratio)
-- [hzToSemitones](modules.md#hztosemitones)
-- [namedNoteToCents](modules.md#namednotetocents)
-- [namedNoteToHz](modules.md#namednotetohz)
-- [namedNoteToRatio](modules.md#namednotetoratio)
-- [namedNoteToSemitones](modules.md#namednotetosemitones)
-- [ratioToCents](modules.md#ratiotocents)
-- [ratioToHz](modules.md#ratiotohz)
-- [ratioToSemitones](modules.md#ratiotosemitones)
-- [semitonesToCents](modules.md#semitonestocents)
-- [semitonesToHz](modules.md#semitonestohz)
-- [semitonesToRatio](modules.md#semitonestoratio)
+- [centsToHz](#centstohz)
+- [centsToRatio](#centstoratio)
+- [centsToSemitones](#centstosemitones)
+- [cleanNoteName](#cleannotename)
+- [formatHz](#formathz)
+- [getNoteIndexInOctave](#getnoteindexinoctave)
+- [hzToCents](#hztocents)
+- [hzToNoteName](#hztonotename)
+- [hzToNoteObject](#hztonoteobject)
+- [hzToRatio](#hztoratio)
+- [hzToSemitones](#hztosemitones)
+- [namedNoteToCents](#namednotetocents)
+- [namedNoteToHz](#namednotetohz)
+- [namedNoteToRatio](#namednotetoratio)
+- [namedNoteToSemitones](#namednotetosemitones)
+- [ratioToCents](#ratiotocents)
+- [ratioToHz](#ratiotohz)
+- [ratioToSemitones](#ratiotosemitones)
+- [semitonesToCents](#semitonestocents)
+- [semitonesToHz](#semitonestohz)
+- [semitonesToRatio](#semitonestoratio)
 
 ## Type Aliases
 
@@ -74,7 +74,7 @@ Supports positive and negative numbers.
 
 #### Defined in
 
-[src/index.ts:53](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L53)
+[src/index.ts:53](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L53)
 
 ___
 
@@ -87,7 +87,7 @@ Supports positive numbers.
 
 #### Defined in
 
-[src/index.ts:59](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L59)
+[src/index.ts:59](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L59)
 
 ___
 
@@ -100,7 +100,7 @@ Also accepts lowercase and keyboard-accessible accidentals like `bb3` and `b#3`.
 
 #### Defined in
 
-[src/index.ts:35](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L35)
+[src/index.ts:35](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L35)
 
 ___
 
@@ -114,13 +114,13 @@ Object with note properties for flexible formatting.
 
 | Name | Type |
 | :------ | :------ |
-| `detune` | [`Cents`](modules.md#cents) |
-| `note` | [`NoteName`](modules.md#notename) |
+| `detune` | [`Cents`](#cents) |
+| `note` | [`NoteName`](#notename) |
 | `octave` | `number` |
 
 #### Defined in
 
-[src/index.ts:64](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L64)
+[src/index.ts:64](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L64)
 
 ___
 
@@ -133,7 +133,7 @@ Supports positive numbers.
 
 #### Defined in
 
-[src/index.ts:41](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L41)
+[src/index.ts:41](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L41)
 
 ___
 
@@ -146,7 +146,7 @@ Supports positive and negative numbers.
 
 #### Defined in
 
-[src/index.ts:47](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L47)
+[src/index.ts:47](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L47)
 
 ## Variables
 
@@ -158,7 +158,7 @@ A4 frequency in Hz
 
 #### Defined in
 
-[src/index.ts:77](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L77)
+[src/index.ts:77](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L77)
 
 ___
 
@@ -170,7 +170,7 @@ Normalized note names in the chromatic scale, using sharps
 
 #### Defined in
 
-[src/index.ts:81](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L81)
+[src/index.ts:81](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L81)
 
 ___
 
@@ -182,13 +182,13 @@ Normalized note names in the chromatic scale, using flats
 
 #### Defined in
 
-[src/index.ts:98](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L98)
+[src/index.ts:98](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L98)
 
 ## Functions
 
 ### centsToHz
 
-▸ **centsToHz**(`cents`, `baseHz?`): [`Hz`](modules.md#hz)
+▸ **centsToHz**(`cents`, `baseHz?`): [`Hz`](#hz)
 
 #### Parameters
 
@@ -199,17 +199,17 @@ Normalized note names in the chromatic scale, using flats
 
 #### Returns
 
-[`Hz`](modules.md#hz)
+[`Hz`](#hz)
 
 #### Defined in
 
-[src/index.ts:195](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L195)
+[src/index.ts:195](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L195)
 
 ___
 
 ### centsToRatio
 
-▸ **centsToRatio**(`cents`): [`Ratio`](modules.md#ratio)
+▸ **centsToRatio**(`cents`): [`Ratio`](#ratio)
 
 #### Parameters
 
@@ -219,17 +219,17 @@ ___
 
 #### Returns
 
-[`Ratio`](modules.md#ratio)
+[`Ratio`](#ratio)
 
 #### Defined in
 
-[src/index.ts:192](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L192)
+[src/index.ts:192](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L192)
 
 ___
 
 ### centsToSemitones
 
-▸ **centsToSemitones**(`cents`): [`Semitones`](modules.md#semitones)
+▸ **centsToSemitones**(`cents`): [`Semitones`](#semitones)
 
 #### Parameters
 
@@ -239,11 +239,11 @@ ___
 
 #### Returns
 
-[`Semitones`](modules.md#semitones)
+[`Semitones`](#semitones)
 
 #### Defined in
 
-[src/index.ts:189](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L189)
+[src/index.ts:189](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L189)
 
 ___
 
@@ -272,7 +272,7 @@ cleanNoteName("bb4") // "B♭4"
 
 #### Defined in
 
-[src/index.ts:135](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L135)
+[src/index.ts:135](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L135)
 
 ___
 
@@ -295,7 +295,7 @@ formats a number in Hz to a string with kilohertz support
 
 #### Defined in
 
-[src/index.ts:148](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L148)
+[src/index.ts:148](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L148)
 
 ___
 
@@ -315,7 +315,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:119](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L119)
+[src/index.ts:119](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L119)
 
 ___
 
@@ -336,7 +336,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:343](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L343)
+[src/index.ts:343](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L343)
 
 ___
 
@@ -366,13 +366,13 @@ hzToNoteName(263, Math.ceil) // C♯
 
 #### Defined in
 
-[src/index.ts:292](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L292)
+[src/index.ts:292](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L292)
 
 ___
 
 ### hzToNoteObject
 
-▸ **hzToNoteObject**(`hz`): [`NoteObject`](modules.md#noteobject)
+▸ **hzToNoteObject**(`hz`): [`NoteObject`](#noteobject)
 
 #### Parameters
 
@@ -382,17 +382,17 @@ ___
 
 #### Returns
 
-[`NoteObject`](modules.md#noteobject)
+[`NoteObject`](#noteobject)
 
 #### Defined in
 
-[src/index.ts:305](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L305)
+[src/index.ts:305](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L305)
 
 ___
 
 ### hzToRatio
 
-▸ **hzToRatio**(`targetHz`, `baseHz?`): [`Ratio`](modules.md#ratio)
+▸ **hzToRatio**(`targetHz`, `baseHz?`): [`Ratio`](#ratio)
 
 #### Parameters
 
@@ -403,17 +403,17 @@ ___
 
 #### Returns
 
-[`Ratio`](modules.md#ratio)
+[`Ratio`](#ratio)
 
 #### Defined in
 
-[src/index.ts:320](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L320)
+[src/index.ts:320](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L320)
 
 ___
 
 ### hzToSemitones
 
-▸ **hzToSemitones**(`targetHz`, `baseHz?`): [`Semitones`](modules.md#semitones)
+▸ **hzToSemitones**(`targetHz`, `baseHz?`): [`Semitones`](#semitones)
 
 **`Example`**
 
@@ -430,17 +430,17 @@ hzToSemitones(880, 440) // -12
 
 #### Returns
 
-[`Semitones`](modules.md#semitones)
+[`Semitones`](#semitones)
 
 #### Defined in
 
-[src/index.ts:334](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L334)
+[src/index.ts:334](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L334)
 
 ___
 
 ### namedNoteToCents
 
-▸ **namedNoteToCents**(`note`): [`Cents`](modules.md#cents)
+▸ **namedNoteToCents**(`note`): [`Cents`](#cents)
 
 #### Parameters
 
@@ -450,17 +450,17 @@ ___
 
 #### Returns
 
-[`Cents`](modules.md#cents)
+[`Cents`](#cents)
 
 #### Defined in
 
-[src/index.ts:229](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L229)
+[src/index.ts:229](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L229)
 
 ___
 
 ### namedNoteToHz
 
-▸ **namedNoteToHz**(`note`): [`Hz`](modules.md#hz)
+▸ **namedNoteToHz**(`note`): [`Hz`](#hz)
 
 **`Example`**
 
@@ -477,17 +477,17 @@ namedNoteToHz("A♯3") // 233.0819
 
 #### Returns
 
-[`Hz`](modules.md#hz)
+[`Hz`](#hz)
 
 #### Defined in
 
-[src/index.ts:242](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L242)
+[src/index.ts:242](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L242)
 
 ___
 
 ### namedNoteToRatio
 
-▸ **namedNoteToRatio**(`note`, `baseNote?`): [`Ratio`](modules.md#ratio)
+▸ **namedNoteToRatio**(`note`, `baseNote?`): [`Ratio`](#ratio)
 
 #### Parameters
 
@@ -498,17 +498,17 @@ ___
 
 #### Returns
 
-[`Ratio`](modules.md#ratio)
+[`Ratio`](#ratio)
 
 #### Defined in
 
-[src/index.ts:223](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L223)
+[src/index.ts:223](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L223)
 
 ___
 
 ### namedNoteToSemitones
 
-▸ **namedNoteToSemitones**(`note`): [`Semitones`](modules.md#semitones)
+▸ **namedNoteToSemitones**(`note`): [`Semitones`](#semitones)
 
 **`Example`**
 
@@ -525,17 +525,17 @@ namedNoteToSemitones("A♯3") // -11
 
 #### Returns
 
-[`Semitones`](modules.md#semitones)
+[`Semitones`](#semitones)
 
 #### Defined in
 
-[src/index.ts:209](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L209)
+[src/index.ts:209](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L209)
 
 ___
 
 ### ratioToCents
 
-▸ **ratioToCents**(`ratio`): [`Cents`](modules.md#cents)
+▸ **ratioToCents**(`ratio`): [`Cents`](#cents)
 
 #### Parameters
 
@@ -545,17 +545,17 @@ ___
 
 #### Returns
 
-[`Cents`](modules.md#cents)
+[`Cents`](#cents)
 
 #### Defined in
 
-[src/index.ts:274](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L274)
+[src/index.ts:274](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L274)
 
 ___
 
 ### ratioToHz
 
-▸ **ratioToHz**(`ratio`, `baseHz?`): [`Hz`](modules.md#hz)
+▸ **ratioToHz**(`ratio`, `baseHz?`): [`Hz`](#hz)
 
 #### Parameters
 
@@ -566,17 +566,17 @@ ___
 
 #### Returns
 
-[`Hz`](modules.md#hz)
+[`Hz`](#hz)
 
 #### Defined in
 
-[src/index.ts:265](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L265)
+[src/index.ts:265](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L265)
 
 ___
 
 ### ratioToSemitones
 
-▸ **ratioToSemitones**(`ratio`): [`Semitones`](modules.md#semitones)
+▸ **ratioToSemitones**(`ratio`): [`Semitones`](#semitones)
 
 **`Example`**
 
@@ -593,17 +593,17 @@ ratioToSemitones(3) // ~19.02
 
 #### Returns
 
-[`Semitones`](modules.md#semitones)
+[`Semitones`](#semitones)
 
 #### Defined in
 
-[src/index.ts:258](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L258)
+[src/index.ts:258](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L258)
 
 ___
 
 ### semitonesToCents
 
-▸ **semitonesToCents**(`semitones`): [`Cents`](modules.md#cents)
+▸ **semitonesToCents**(`semitones`): [`Cents`](#cents)
 
 #### Parameters
 
@@ -613,17 +613,17 @@ ___
 
 #### Returns
 
-[`Cents`](modules.md#cents)
+[`Cents`](#cents)
 
 #### Defined in
 
-[src/index.ts:173](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L173)
+[src/index.ts:173](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L173)
 
 ___
 
 ### semitonesToHz
 
-▸ **semitonesToHz**(`semitones`, `baseHz?`): [`Hz`](modules.md#hz)
+▸ **semitonesToHz**(`semitones`, `baseHz?`): [`Hz`](#hz)
 
 **`Example`**
 
@@ -641,17 +641,17 @@ semitonesToHz(-3, 523.2511) // 440
 
 #### Returns
 
-[`Hz`](modules.md#hz)
+[`Hz`](#hz)
 
 #### Defined in
 
-[src/index.ts:164](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L164)
+[src/index.ts:164](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L164)
 
 ___
 
 ### semitonesToRatio
 
-▸ **semitonesToRatio**(`semitones`): [`Ratio`](modules.md#ratio)
+▸ **semitonesToRatio**(`semitones`): [`Ratio`](#ratio)
 
 #### Parameters
 
@@ -661,8 +661,8 @@ ___
 
 #### Returns
 
-[`Ratio`](modules.md#ratio)
+[`Ratio`](#ratio)
 
 #### Defined in
 
-[src/index.ts:179](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L179)
+[src/index.ts:179](https://github.com/danielgamage/k-h-z/blob/b3d2443/src/index.ts#L179)
