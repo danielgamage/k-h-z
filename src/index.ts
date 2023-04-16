@@ -265,6 +265,7 @@ export function ratioToSemitones(
 export function ratioToHz(
   /** decimal or fractional ratio */
   ratio: Ratio,
+  /** optional base note */
   baseHz?: Hz
 ): Hz {
   return semitonesToHz(ratioToSemitones(ratio), baseHz);
@@ -317,12 +318,12 @@ export function hzToNoteObject(
 }
 
 export function hzToRatio(
-  /** base frequency in hertz */
-  hzA: Hz,
   /** target frequency in hertz */
-  hzB: Hz = A4
+  targetHz: Hz,
+  /** base frequency in hertz */
+  baseHz: Hz = A4
 ): Ratio {
-  return hzA / hzB;
+  return targetHz / baseHz;
 }
 
 /**
@@ -331,14 +332,14 @@ export function hzToRatio(
  * ```
  */
 export function hzToSemitones(
-  /** base frequency in hertz */
-  hzA: Hz,
   /** target frequency in hertz */
-  hzB: Hz
+  targetHz: Hz,
+  /** base frequency in hertz */
+  baseHz: Hz = A4
 ): Semitones {
-  return 12 * Math.log2(hzB / hzA);
+  return 12 * Math.log2(targetHz / baseHz);
 }
 
-export function hzToCents(hzA: number, hzB: number): number {
-  return semitonesToCents(hzToSemitones(hzA, hzB));
+export function hzToCents(targetHz: number, baseHz: number): number {
+  return semitonesToCents(hzToSemitones(targetHz, baseHz));
 }

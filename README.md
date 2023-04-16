@@ -74,7 +74,7 @@ Supports positive and negative numbers.
 
 #### Defined in
 
-[src/index.ts:53](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L53)
+[src/index.ts:53](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L53)
 
 ___
 
@@ -87,7 +87,7 @@ Supports positive numbers.
 
 #### Defined in
 
-[src/index.ts:59](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L59)
+[src/index.ts:59](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L59)
 
 ___
 
@@ -100,7 +100,7 @@ Also accepts lowercase and keyboard-accessible accidentals like `bb3` and `b#3`.
 
 #### Defined in
 
-[src/index.ts:35](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L35)
+[src/index.ts:35](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L35)
 
 ___
 
@@ -120,7 +120,7 @@ Object with note properties for flexible formatting.
 
 #### Defined in
 
-[src/index.ts:64](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L64)
+[src/index.ts:64](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L64)
 
 ___
 
@@ -133,7 +133,7 @@ Supports positive numbers.
 
 #### Defined in
 
-[src/index.ts:41](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L41)
+[src/index.ts:41](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L41)
 
 ___
 
@@ -146,7 +146,7 @@ Supports positive and negative numbers.
 
 #### Defined in
 
-[src/index.ts:47](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L47)
+[src/index.ts:47](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L47)
 
 ## Variables
 
@@ -158,7 +158,7 @@ A4 frequency in Hz
 
 #### Defined in
 
-[src/index.ts:77](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L77)
+[src/index.ts:77](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L77)
 
 ___
 
@@ -170,7 +170,7 @@ Normalized note names in the chromatic scale, using sharps
 
 #### Defined in
 
-[src/index.ts:81](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L81)
+[src/index.ts:81](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L81)
 
 ___
 
@@ -182,7 +182,7 @@ Normalized note names in the chromatic scale, using flats
 
 #### Defined in
 
-[src/index.ts:98](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L98)
+[src/index.ts:98](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L98)
 
 ## Functions
 
@@ -203,7 +203,7 @@ Normalized note names in the chromatic scale, using flats
 
 #### Defined in
 
-[src/index.ts:195](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L195)
+[src/index.ts:195](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L195)
 
 ___
 
@@ -223,7 +223,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:192](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L192)
+[src/index.ts:192](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L192)
 
 ___
 
@@ -243,7 +243,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:189](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L189)
+[src/index.ts:189](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L189)
 
 ___
 
@@ -272,7 +272,7 @@ cleanNoteName("bb4") // "B♭4"
 
 #### Defined in
 
-[src/index.ts:135](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L135)
+[src/index.ts:135](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L135)
 
 ___
 
@@ -295,7 +295,7 @@ formats a number in Hz to a string with kilohertz support
 
 #### Defined in
 
-[src/index.ts:148](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L148)
+[src/index.ts:148](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L148)
 
 ___
 
@@ -315,20 +315,20 @@ ___
 
 #### Defined in
 
-[src/index.ts:119](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L119)
+[src/index.ts:119](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L119)
 
 ___
 
 ### hzToCents
 
-▸ **hzToCents**(`hzA`, `hzB`): `number`
+▸ **hzToCents**(`targetHz`, `baseHz`): `number`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `hzA` | `number` |
-| `hzB` | `number` |
+| `targetHz` | `number` |
+| `baseHz` | `number` |
 
 #### Returns
 
@@ -336,7 +336,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:342](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L342)
+[src/index.ts:343](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L343)
 
 ___
 
@@ -366,7 +366,7 @@ hzToNoteName(263, Math.ceil) // C♯
 
 #### Defined in
 
-[src/index.ts:291](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L291)
+[src/index.ts:292](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L292)
 
 ___
 
@@ -386,20 +386,20 @@ ___
 
 #### Defined in
 
-[src/index.ts:304](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L304)
+[src/index.ts:305](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L305)
 
 ___
 
 ### hzToRatio
 
-▸ **hzToRatio**(`hzA`, `hzB?`): [`Ratio`](modules.md#ratio)
+▸ **hzToRatio**(`targetHz`, `baseHz?`): [`Ratio`](modules.md#ratio)
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `hzA` | `number` | `undefined` | base frequency in hertz |
-| `hzB` | `number` | `A4` | target frequency in hertz |
+| `targetHz` | `number` | `undefined` | target frequency in hertz |
+| `baseHz` | `number` | `A4` | base frequency in hertz |
 
 #### Returns
 
@@ -407,13 +407,13 @@ ___
 
 #### Defined in
 
-[src/index.ts:319](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L319)
+[src/index.ts:320](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L320)
 
 ___
 
 ### hzToSemitones
 
-▸ **hzToSemitones**(`hzA`, `hzB`): [`Semitones`](modules.md#semitones)
+▸ **hzToSemitones**(`targetHz`, `baseHz?`): [`Semitones`](modules.md#semitones)
 
 **`Example`**
 
@@ -423,10 +423,10 @@ hzToSemitones(880, 440) // -12
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `hzA` | `number` | base frequency in hertz |
-| `hzB` | `number` | target frequency in hertz |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `targetHz` | `number` | `undefined` | target frequency in hertz |
+| `baseHz` | `number` | `A4` | base frequency in hertz |
 
 #### Returns
 
@@ -434,7 +434,7 @@ hzToSemitones(880, 440) // -12
 
 #### Defined in
 
-[src/index.ts:333](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L333)
+[src/index.ts:334](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L334)
 
 ___
 
@@ -454,7 +454,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:229](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L229)
+[src/index.ts:229](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L229)
 
 ___
 
@@ -481,7 +481,7 @@ namedNoteToHz("A♯3") // 233.0819
 
 #### Defined in
 
-[src/index.ts:242](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L242)
+[src/index.ts:242](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L242)
 
 ___
 
@@ -502,7 +502,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:223](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L223)
+[src/index.ts:223](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L223)
 
 ___
 
@@ -529,7 +529,7 @@ namedNoteToSemitones("A♯3") // -11
 
 #### Defined in
 
-[src/index.ts:209](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L209)
+[src/index.ts:209](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L209)
 
 ___
 
@@ -549,7 +549,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:273](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L273)
+[src/index.ts:274](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L274)
 
 ___
 
@@ -562,7 +562,7 @@ ___
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `ratio` | `number` | decimal or fractional ratio |
-| `baseHz?` | `number` | - |
+| `baseHz?` | `number` | optional base note |
 
 #### Returns
 
@@ -570,7 +570,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:265](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L265)
+[src/index.ts:265](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L265)
 
 ___
 
@@ -597,7 +597,7 @@ ratioToSemitones(3) // ~19.02
 
 #### Defined in
 
-[src/index.ts:258](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L258)
+[src/index.ts:258](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L258)
 
 ___
 
@@ -617,7 +617,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:173](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L173)
+[src/index.ts:173](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L173)
 
 ___
 
@@ -645,7 +645,7 @@ semitonesToHz(-3, 523.2511) // 440
 
 #### Defined in
 
-[src/index.ts:164](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L164)
+[src/index.ts:164](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L164)
 
 ___
 
@@ -665,4 +665,4 @@ ___
 
 #### Defined in
 
-[src/index.ts:179](https://github.com/danielgamage/k-h-z/blob/5388df1/src/index.ts#L179)
+[src/index.ts:179](https://github.com/danielgamage/k-h-z/blob/462a1a9/src/index.ts#L179)
