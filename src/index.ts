@@ -2,6 +2,17 @@
  * 
  * This (ESM)  module provides a collection of functions for converting between pitch and frequency units.
  * 
+ * ## Installation
+ * ```bash
+ * npm install k-h-z
+ * ```
+ * 
+ * ## Usage
+ * ```js
+ * import { hzToSemitones } from "k-h-z";
+ * hzToSemitones(880, 440); // +12
+ * ```
+ * 
  * ## Conversion Overview
  * |                  | → hz                  | → ratio                  | → semitones                  | → cents                  | → named               | → note object         |
  * | :--------------- | :-------------------- | :----------------------- | :--------------------------- | :----------------------- | :-------------------- | :-------------------- |
@@ -11,46 +22,54 @@
  * | cents&nbsp;→     | {@link centsToHz}     | {@link centsToRatio}     | {@link centsToSemitones}     | _N/A_                    | _Unimplemented_       | _Unimplemented_       |
  * | named&nbsp;→     | {@link namedNoteToHz} | {@link namedNoteToRatio} | {@link namedNoteToSemitones} | {@link namedNoteToCents} | _N/A_                 | _N/A_                 |
  * 
- * ## Installation
- * ```bash
- * npm install k-h-z
- * ```
  * @packageDocumentation
  */
 
+// =====================
+// types
+// =====================
 /**
  * A note name, e.g. `C4`, `A♯3`, `F♯5`.
  * Also accepts lowercase and keyboard-accessible accidentals like `bb3` and `b#3`.
  */
 export type NoteName = string;
+
 /**
- * A ratio, e.g. `1.5`, `2`, `0.5`.
+ * A frequency ratio, e.g. `1.5`, `2`, `0.5`.
  * Supports positive numbers.
  */
 export type Ratio = number;
+
 /**
- * A semitone offset, e.g. `+3`, `-5`, `0`.
+ * A semitone pitch offset, e.g. `+3`, `-5`, `0`.
  * Supports positive and negative numbers.
  */
 export type Semitones = number;
+
+/**
+ * A pitch offset in cents, e.g. `+100`, `-200`, `0`.
+ * Supports positive and negative numbers.
+ */
+export type Cents = number
+
 /**
  * A frequency in Hz, e.g. `440`, `523.2511`, or `1600` (1.6kHz).
  * Supports positive numbers.
  */
 export type Hz = number;
+
 /**
- * A frequency offset in cents, e.g. `+100`, `-200`, `0`.
- * Supports positive and negative numbers.
- */
-export type Cents = number
-/**
- * 
+ * Object with note properties for flexible formatting.
  */
 export type NoteObject = {
   note: NoteName;
   octave: number;
   detune: Cents;
 }
+
+// =====================
+// constants
+// =====================
 
 /**
  * A4 frequency in Hz
@@ -123,6 +142,16 @@ export function cleanNoteName(
     .toUpperCase();
 }
 
+/**
+ * formats a number in Hz to a string with kilohertz support
+ */
+export function formatHz(hz: Hz, precision = 2): string {
+  if (hz >= 1000) {
+    return `${(hz / 1000).toFixed(precision)}kHz`;
+  }
+  return `${hz.toFixed(precision)}Hz`;
+}
+
 // =====================
 // from semitones
 // =====================
@@ -134,36 +163,36 @@ export function cleanNoteName(
  */
 export function semitonesToHz(
   /** semitone offset */
-  semitones: number,
+  semitones: Semitones,
   /** optional base note */
-  baseHz: number = A4
-): number {
+  baseHz: Hz = A4
+): Hz {
   return baseHz * Math.pow(2, semitones / 12);
 }
 
 export function semitonesToCents(
   /**semitone offset*/
-  semitones: number
-): number {
+  semitones: Semitones
+): Cents {
   return 100 * semitones;
 }
 export function semitonesToRatio(
   /** semitone offset */
-  semitones: number
-): number {
+  semitones: Semitones
+): Ratio {
   return Math.pow(2, semitones / 12);
 }
 
 // =====================
 // from cents
 // =====================
-export function centsToSemitones(cents: number) {
+export function centsToSemitones(cents: Cents): Semitones {
   return cents / 100;
 }
-export function centsToRatio(cents: number) {
+export function centsToRatio(cents: Cents): Ratio {
   return semitonesToRatio(centsToSemitones(cents));
 }
-export function centsToHz(cents: number, baseHz?: number) {
+export function centsToHz(cents: Cents, baseHz?: Hz): Hz {
   return semitonesToHz(centsToSemitones(cents), baseHz);
 }
 
@@ -179,7 +208,7 @@ export function centsToHz(cents: number, baseHz?: number) {
  */
 export function namedNoteToSemitones(
   note: NoteName
-) {
+): Semitones {
   const cleanNote = cleanNoteName(note);
   const noteIndex = getNoteIndexInOctave(cleanNote.replace(/-?[0-9]+/g, ""));
 
@@ -193,14 +222,14 @@ export function namedNoteToSemitones(
 }
 export function namedNoteToRatio(
   note: NoteName,
-  baseNote: string = "A4",
-) {
+  baseNote: NoteName = "A4",
+): Ratio {
   return namedNoteToHz(note) / namedNoteToHz(baseNote);
 }
 export function namedNoteToCents(
   /** note name, e.g. C4, A♯3, F♯5 */
-  note: string
-) {
+  note: NoteName
+): Cents {
   return semitonesToCents(namedNoteToSemitones(note));
 }
 
@@ -212,8 +241,8 @@ export function namedNoteToCents(
  */
 export function namedNoteToHz(
   /** note name, e.g. C4, A♯3, F♯5 */
-  note: string
-): number {
+  note: NoteName
+): Hz {
   return semitonesToHz(namedNoteToSemitones(note));
 }
 
@@ -228,23 +257,23 @@ export function namedNoteToHz(
  */
 export function ratioToSemitones(
   /** decimal or fractional ratio */
-  ratio: number
-): number {
+  ratio: Ratio
+): Semitones {
   return 12 * Math.log2(ratio);
 }
 
 export function ratioToHz(
   /** decimal or fractional ratio */
-  ratio: number,
-  baseHz?: number
-): number {
+  ratio: Ratio,
+  baseHz?: Hz
+): Hz {
   return semitonesToHz(ratioToSemitones(ratio), baseHz);
 }
 
 export function ratioToCents(
   /** decimal or fractional ratio */
-  ratio: number
-): number {
+  ratio: Ratio
+): Cents {
   return semitonesToCents(ratioToSemitones(ratio));
 }
 
@@ -261,7 +290,7 @@ export function ratioToCents(
  */
 export function hzToNoteName(
   /** frequency of note in hertz */
-  hz: number,
+  hz: Hz,
   /** whether to round up, down, or naturally */
   rounding:
     | typeof Math.round
@@ -274,7 +303,7 @@ export function hzToNoteName(
 
 export function hzToNoteObject(
   /** frequency of note in hertz */
-  hz: number
+  hz: Hz
 ): NoteObject {
   const semitone = 12 * (Math.log(hz / 440) / Math.log(2)) + 69;
   const round = Math.round(semitone);
@@ -289,10 +318,10 @@ export function hzToNoteObject(
 
 export function hzToRatio(
   /** base frequency in hertz */
-  hzA: number,
+  hzA: Hz,
   /** target frequency in hertz */
-  hzB: number = A4
-): number {
+  hzB: Hz = A4
+): Ratio {
   return hzA / hzB;
 }
 
@@ -303,23 +332,13 @@ export function hzToRatio(
  */
 export function hzToSemitones(
   /** base frequency in hertz */
-  hzA: number,
+  hzA: Hz,
   /** target frequency in hertz */
-  hzB: number
-): number {
+  hzB: Hz
+): Semitones {
   return 12 * Math.log2(hzB / hzA);
 }
 
 export function hzToCents(hzA: number, hzB: number): number {
   return semitonesToCents(hzToSemitones(hzA, hzB));
-}
-
-/**
- * formats a number in Hz to a string with kilohertz support
- */
-export function formatHz(hz: number, precision = 2): string {
-  if (hz >= 1000) {
-    return `${(hz / 1000).toFixed(precision)}kHz`;
-  }
-  return `${hz.toFixed(precision)}Hz`;
 }

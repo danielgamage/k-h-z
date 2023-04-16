@@ -1,7 +1,7 @@
 {
-  "name": "khz",
+  "name": "k-h-z",
   "version": "0.1.0",
-  "description": "Musical utility functions",
+  "description": "Pitch and frequency functions",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,10 +10,10 @@
   },
   "scripts": {
     "build": "rm -rf dist/* && rollup --config",
-    "test": "vitest",
-    "coverage": "vitest run --coverage",
-    "docs": "typedoc",
-    "docs:watch": "typedoc --watch"
+    "test": "vitest --config ./src/vite.config.js",
+    "coverage": "vitest run --coverage --config ./src/vite.config.js",
+    "readme": "typedoc",
+    "readme:watch": "typedoc --watch"
   },
   "browserslist": {
     "production": [
