@@ -160,6 +160,30 @@ describe("formatHz", function () {
 });
 
 describe("from ratio", () => {
+  describe("ratioToHz", () => {
+    [
+      { input: 2, output: 880 },
+      { input: 3, output: 1320 },
+      { input: 4, output: 1760 },
+      { input: 0.5, output: 220 },
+    ].forEach(({ input, output }) => {
+      test(`${input} → ${output}`, () => {
+        expect(khz.ratioToHz(input)).toBe(output);
+      });
+    });
+  });
+  describe("ratioToCents", () => {
+    [
+      { input: 2, output: 1200 },
+      { input: 3, output: 1901.955 },
+      { input: 4, output: 2400 },
+      { input: 0.5, output: -1200 },
+    ].forEach(({ input, output }) => {
+      test(`${input} → ${output}`, () => {
+        expect(khz.ratioToCents(input)).toBeCloseTo(output);
+      });
+    });
+  });
   describe("ratioToSemitones", () => {
     test("converts multipliers to semitones", () => {
       expect(khz.ratioToSemitones(1.4983206107)).toBeCloseTo(7);
@@ -205,6 +229,10 @@ describe("from named note", () => {
   describe("namedNoteToSemitones", () => {
     test("C4", () => expect(khz.namedNoteToSemitones("C4")).toBe(-9));
     test("A♯3", () => expect(khz.namedNoteToSemitones("A♯3")).toBe(-11));
+  });
+  describe("namedNoteToCents", () => {
+    test("C4", () => expect(khz.namedNoteToCents("C4")).toBe(-900));
+    test("A♯3", () => expect(khz.namedNoteToCents("A♯3")).toBe(-1100));
   });
   describe("namedNoteToHz", () => {
     const tests = {

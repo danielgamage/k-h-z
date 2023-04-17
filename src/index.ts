@@ -29,7 +29,7 @@
 // types
 // =====================
 /**
- * A note name, e.g. `C4`, `A♯3`, `F♯5`.
+ * A note name with its octave, e.g. `C4`, `A♯3`, `F♯5`.
  * Also accepts lowercase and keyboard-accessible accidentals like `bb3` and `b#3`.
  */
 export type NoteName = string;
@@ -47,23 +47,28 @@ export type Ratio = number;
 export type Semitones = number;
 
 /**
- * A pitch offset in cents, e.g. `+100`, `-200`, `0`.
+ * A granular pitch offset unit, e.g. `+100`, `-200`, `0`.
  * Supports positive and negative numbers.
  */
 export type Cents = number
 
 /**
- * A frequency in Hz, e.g. `440`, `523.2511`, or `1600` (1.6kHz).
+ * A frequency unit reflecting the number of cycles per second, e.g. `440`, `523.2511`, or `1600` (1.6kHz).
  * Supports positive numbers.
  */
 export type Hz = number;
+
+/**
+ * Integer pitch grouping, e.g. `-1`, `4`, `10`.
+ */
+export type Octave = number;
 
 /**
  * Object with note properties for flexible formatting.
  */
 export type NoteObject = {
   note: NoteName;
-  octave: number;
+  octave: Octave;
   detune: Cents;
 }
 
@@ -144,6 +149,10 @@ export function cleanNoteName(
 
 /**
  * formats a number in Hz to a string with kilohertz support
+ * @example ```js
+ * formatHz(232.5) // "232.50Hz"
+ * formatHz(2325) // "2.33kHz"
+ * ```
  */
 export function formatHz(hz: Hz, precision = 2): string {
   if (hz >= 1000) {
@@ -170,12 +179,24 @@ export function semitonesToHz(
   return baseHz * Math.pow(2, semitones / 12);
 }
 
+/**
+ * @example ```js
+ * semitonesToCents(-12) // -1200
+ * semitonesToCents(0.5) // 50
+ * ```
+ */
 export function semitonesToCents(
   /**semitone offset*/
   semitones: Semitones
 ): Cents {
   return 100 * semitones;
 }
+/**
+ * @example ```js
+ * semitonesToRatio(12) // 2
+ * semitonesToRatio(-12) // 0.5
+ * ```
+ */
 export function semitonesToRatio(
   /** semitone offset */
   semitones: Semitones
@@ -186,12 +207,27 @@ export function semitonesToRatio(
 // =====================
 // from cents
 // =====================
+/**
+ * @example ```js
+ * centsToSemitones(100) // +1
+ * ```
+ */
 export function centsToSemitones(cents: Cents): Semitones {
   return cents / 100;
 }
+/**
+ * @example ```js
+ * centsToRatio(1200) // 2
+ * ```
+ */
 export function centsToRatio(cents: Cents): Ratio {
   return semitonesToRatio(centsToSemitones(cents));
 }
+/**
+ * @example ```js
+ * centsToHz(1200) // 880
+ * ```
+ */
 export function centsToHz(cents: Cents, baseHz?: Hz): Hz {
   return semitonesToHz(centsToSemitones(cents), baseHz);
 }
@@ -220,12 +256,22 @@ export function namedNoteToSemitones(
   const semitone = noteIndex + (octave - 4) * 12;
   return semitone;
 }
+/**
+ * @example ```js
+ * namedNoteToRatio("A4") // 1
+ * namedNoteToRatio("A♯3") // 0.5
+ * ```
+ */
 export function namedNoteToRatio(
   note: NoteName,
   baseNote: NoteName = "A4",
 ): Ratio {
   return namedNoteToHz(note) / namedNoteToHz(baseNote);
 }
+/**
+ * @example ```js
+ * namedNoteToCents("C4") // -900
+ */
 export function namedNoteToCents(
   /** note name, e.g. C4, A♯3, F♯5 */
   note: NoteName
@@ -262,18 +308,31 @@ export function ratioToSemitones(
   return 12 * Math.log2(ratio);
 }
 
+/**
+ * @example ```js
+ * ratioToHz(2) // 880
+ * ratioToHz(3) // 1320
+ * ```
+ */
 export function ratioToHz(
   /** decimal or fractional ratio */
   ratio: Ratio,
   /** optional base note */
-  baseHz?: Hz
+  baseHz: Hz = A4
 ): Hz {
-  return semitonesToHz(ratioToSemitones(ratio), baseHz);
+  return ratio * baseHz;
 }
 
+/**
+ * 
+ * @example ```js
+ * ratioToCents(2) // 1200
+ * ratioToCents(3) // 1902
+ * ```
+ */
 export function ratioToCents(
   /** decimal or fractional ratio */
-  ratio: Ratio
+  ratio: Ratio,
 ): Cents {
   return semitonesToCents(ratioToSemitones(ratio));
 }
@@ -317,6 +376,13 @@ export function hzToNoteObject(
   };
 }
 
+/**
+ * 
+ * @example ```js
+ * hzToRatio(880) // 2
+ * hzToRatio(440, 880) // 0.5
+ * ```
+ */
 export function hzToRatio(
   /** target frequency in hertz */
   targetHz: Hz,
@@ -340,6 +406,11 @@ export function hzToSemitones(
   return 12 * Math.log2(targetHz / baseHz);
 }
 
-export function hzToCents(targetHz: number, baseHz: number): number {
+/**
+ * @example ```js
+ * hzToCents(880, 440) // -1200
+ * ```
+ */
+export function hzToCents(targetHz: Hz, baseHz: Hz): Cents {
   return semitonesToCents(hzToSemitones(targetHz, baseHz));
 }
