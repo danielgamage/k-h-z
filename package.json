@@ -1,10 +1,14 @@
 {
-  "name": "k-h-z",
+  "name": "pitch-utils",
   "version": "0.1.0",
   "description": "Pitch and frequency functions",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:danielgamage/pitch-utils.git"
+  },
   "exports": {
     ".": "./dist/index.js"
   },

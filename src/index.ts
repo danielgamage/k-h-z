@@ -4,12 +4,12 @@
  * 
  * ## Installation
  * ```bash
- * npm install k-h-z
+ * npm install pitch-utils
  * ```
  * 
  * ## Usage
  * ```js
- * import { hzToSemitones } from "k-h-z";
+ * import { hzToSemitones } from "pitch-utils";
  * hzToSemitones(880, 440); // +12
  * ```
  * 
