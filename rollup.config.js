@@ -1,5 +1,5 @@
-import typescript from 'rollup-plugin-typescript2';
-import terser from '@rollup/plugin-terser';
+import typescript from "rollup-plugin-typescript2"
+import terser from "@rollup/plugin-terser"
 const config = {
   plugins: [typescript(), terser()],
   input: "./src/index.ts",
@@ -8,6 +8,6 @@ const config = {
     format: "esm",
     compact: true,
   },
-};
+}
 
-export default config;
+export default config
