@@ -228,7 +228,7 @@ export function centsToRatio(cents: Cents): Ratio {
  * centsToHz(1200) // 880
  * ```
  */
-export function centsToHz(cents: Cents, baseHz?: Hz): Hz {
+export function centsToHz(cents: Cents, baseHz: Hz = A4): Hz {
   return semitonesToHz(centsToSemitones(cents), baseHz);
 }
 
@@ -412,6 +412,6 @@ export function hzToSemitones(
  * hzToCents(880, 440) // -1200
  * ```
  */
-export function hzToCents(targetHz: Hz, baseHz: Hz): Cents {
+export function hzToCents(targetHz: Hz, baseHz: Hz = A4): Cents {
   return semitonesToCents(hzToSemitones(targetHz, baseHz));
 }
