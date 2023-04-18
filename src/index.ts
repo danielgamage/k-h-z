@@ -271,6 +271,7 @@ export function namedNoteToRatio(
 /**
  * @example ```js
  * namedNoteToCents("C4") // -900
+ * ```
  */
 export function namedNoteToCents(
   /** note name, e.g. C4, A♯3, F♯5 */
