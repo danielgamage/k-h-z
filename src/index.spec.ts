@@ -237,15 +237,19 @@ describe("from named note", () => {
       { input: "D♭", output: -8 },
       { input: "D", output: -7 },
       { input: "E", output: -5 },
+      { input: "F♭", output: -5 },
+      { input: "E♯", output: -4 },
       { input: "F", output: -4 },
       { input: "G", output: -2 },
       { input: "A", output: 0 },
       { input: "B", output: 2 },
+      { input: "C♭", output: 2 },
     ].forEach(({ input, output }) => {
       test(`${input} → ${output}`, () => {
         expect(khz.getNoteIndexInOctave(input)).toBe(output)
       })
     })
+    // TODO: expect a throw on invalid note name
   })
   describe("namedNoteToSemitones", () => {
     test("C4", () => expect(khz.namedNoteToSemitones("C4")).toBe(-9))

@@ -99,21 +99,21 @@ export const chromaticScale = [
   "B",
 ]
 /**
- * Normalized note names in the chromatic scale, using flats
+ * Note names with alternate enharmonic names
  */
-export const chromaticScaleFlat = [
-  "C",
-  "D♭",
-  "D",
-  "E♭",
-  "E",
-  "F",
-  "G♭",
-  "G",
-  "A♭",
-  "A",
-  "B♭",
-  "B",
+export const enharmonicChromaticScale = [
+  ["C", "B♯"],
+  ["C♯", "D♭"],
+  ["D"],
+  ["D♯", "E♭"],
+  ["E", "F♭"],
+  ["F", "E♯"],
+  ["F♯", "G♭"],
+  ["G"],
+  ["G♯", "A♭"],
+  ["A"],
+  ["A♯", "B♭"],
+  ["B", "C♭"],
 ]
 
 // =====================
@@ -123,12 +123,13 @@ export const chromaticScaleFlat = [
  *
  */
 export const getNoteIndexInOctave = (note: string) => {
-  let scaleIndex = chromaticScale.indexOf(note)
-  if (scaleIndex === -1) {
-    scaleIndex = chromaticScaleFlat.indexOf(note)
-  }
+  let scaleIndex = enharmonicChromaticScale.findIndex(el => el.includes(note))
   // center around A4
-  return -9 + scaleIndex
+  if (scaleIndex > -1) {
+    return -9 + scaleIndex
+  } else {
+    throw new Error("Invalid note name")
+  }
 }
 
 /**
