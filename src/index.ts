@@ -67,6 +67,7 @@ export type Octave = number
  * Object with note properties for flexible formatting.
  */
 export type NoteObject = {
+  hz: Hz
   note: NoteName
   octave: Octave
   detune: Cents
@@ -368,6 +369,7 @@ export function hzToNoteObject(
   const centRemainder =
     (semitone % 1 > 0.5 ? -1 + (semitone % 1) : semitone % 1) * 100
   return {
+    hz,
     note: hzToNoteName(hz),
     octave: Math.floor(round / 12 - 1),
     detune: Math.round(centRemainder),
