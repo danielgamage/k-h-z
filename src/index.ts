@@ -356,7 +356,7 @@ export function hzToNoteName(
     | typeof Math.ceil = Math.round
 ): string {
   const note = rounding(12 * (Math.log(hz / 440) / Math.log(2))) + 69
-  return chromaticScale[note % 12]
+  return chromaticScale[(note + 12 * 1000) % 12]
 }
 
 export function hzToNoteObject(

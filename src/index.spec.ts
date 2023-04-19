@@ -52,13 +52,34 @@ describe("from Hz", function () {
   describe("hzToNoteObject", () => {
     test("basic", () => {
       expect(khz.hzToNoteObject(262).note).toBe("C")
-      expect(khz.hzToNoteObject(440).note).toBe("A")
-      expect(khz.hzToNoteObject(523).note).toBe("C")
-      expect(khz.hzToNoteObject(8372).note).toBe("C")
       expect(khz.hzToNoteObject(262).octave).toBe(4)
+      expect(khz.hzToNoteObject(440).note).toBe("A")
       expect(khz.hzToNoteObject(440).octave).toBe(4)
+      expect(khz.hzToNoteObject(523).note).toBe("C")
       expect(khz.hzToNoteObject(523).octave).toBe(5)
+      expect(khz.hzToNoteObject(8372).note).toBe("C")
       expect(khz.hzToNoteObject(8372).octave).toBe(9)
+    })
+    describe("extended range notes", () => {
+      const tests = [
+        {note: "C", octave: -2, hz: 4.088},
+        {note: "D", octave: -2, hz: 4.589},
+        {note: "F", octave: -2, hz: 5.457},
+        {note: "C", octave: -1, hz: 8.176},
+        {note: "E", octave: -1, hz: 10.030},
+        {note: "G♯", octave: -1, hz: 12.978},
+        {note: "A", octave: -1, hz: 13.75},
+        {note: "B", octave: -1, hz: 15.434},
+        {note: "B", octave: 10, hz: 31608.53},
+        {note: "B", octave: 12, hz: 126434.12},
+      ]
+      tests.forEach(({note, octave, hz}) => {
+        test(`${hz} → ${note}${octave}`, () => {
+          const result = khz.hzToNoteObject(hz)
+          expect(result.note).toBe(note)
+          expect(result.octave).toBe(octave)
+        })
+      })
     })
     test("exports correct negative detune in cents", () => {
       const Bflat = khz.hzToNoteObject(480)
