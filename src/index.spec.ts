@@ -302,3 +302,17 @@ describe("from named note", () => {
     test("A4:A3", () => expect(khz.namedNoteToRatio("A4", "A3")).toBeCloseTo(2))
   })
 })
+describe("Pitch class", () => {
+  test("initializes with A4", () => {
+    expect((new khz.Pitch()).hz).toBeCloseTo(440)
+  })
+  test(".fromNamedNote", () => {
+    expect((new khz.Pitch().fromNamedNote("A2")).hz).toBeCloseTo(110)
+  })
+  test(".hz updates", () => {
+    expect((new khz.Pitch(440)).addRatio(3/2).hz).toBeCloseTo(440 * 3 / 2)
+  })
+  test("chains", () => {
+    expect((new khz.Pitch(440)).addRatio(3/2).addSemitones(12).addCents(-2).semitones).toBeCloseTo(19)
+  })
+})

@@ -415,3 +415,56 @@ export function hzToSemitones(
 export function hzToCents(targetHz: Hz, baseHz: Hz = A4): Cents {
   return semitonesToCents(hzToSemitones(targetHz, baseHz))
 }
+
+/**
+ * @example ```js
+ * const note = new Pitch(440)
+ * note.note // "A4"
+ * note.addRatio(3/1)
+ * note.note // "E6"
+ * ```
+ */
+export class Pitch {
+  hz: Hz
+  constructor(
+    /** frequency of note in hertz */
+    public frequency: Hz = A4
+  ) {
+    this.hz = frequency
+  }
+  
+  get semitones(): Semitones {
+    return hzToSemitones(this.hz)
+  }
+  get cents(): Cents {
+    return hzToCents(this.hz)
+  }
+  get ratio(): Ratio {
+    return hzToRatio(this.hz)
+  }
+  get note(): NoteName {
+    return hzToNoteName(this.hz)
+  }
+  get noteObject(): NoteObject {
+    return hzToNoteObject(this.hz)
+  }
+
+  addSemitones(semitones: Semitones) {
+    this.hz = semitonesToHz(semitones, this.hz)
+    return this
+  }
+  addCents(cents: Cents) {
+    this.hz = centsToHz(cents, this.hz)
+    return this
+  }
+  addRatio(ratio: Ratio) {
+    this.hz = ratioToHz(ratio, this.hz)
+    return this
+  }
+  fromNamedNote(
+    note: NoteName,
+  ) {
+    this.hz = namedNoteToHz(note)
+    return this
+  }
+}
