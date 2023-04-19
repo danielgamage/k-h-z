@@ -178,6 +178,9 @@ describe("formatHz", function () {
       expect(khz.formatHz(input)).toBe(output)
     })
   })
+  test("includes positive sign when specified", () => {
+    expect(khz.formatHz(2340, undefined, true)).toBe("+2.34kHz")
+  })
 })
 
 describe("from ratio", () => {

@@ -150,17 +150,26 @@ export function cleanNoteName(
 }
 
 /**
- * formats a number in Hz to a string with kilohertz support
+ * Formats a number in Hz to a string with kilohertz support
+ * Assumes tabular numeral usage, and includes trailing zeros for alignment.
  * @example ```js
  * formatHz(232.5) // "232.50Hz"
  * formatHz(2325) // "2.33kHz"
+ * formatHz(2325, 2, true) // "+2.33kHz"
  * ```
  */
-export function formatHz(hz: Hz, precision = 2): string {
+export function formatHz(
+  hz: Hz,
+  precision = 2,
+  /** whether to include (+) signs */
+  alwaysIncludeSign = false
+): string {
+  const addPlusSign = alwaysIncludeSign && hz >= 0
+  let sign = addPlusSign ? "+" : ""
   if (hz >= 1000) {
-    return `${(hz / 1000).toFixed(precision)}kHz`
+    return `${sign}${(hz / 1000).toFixed(precision)}kHz`
   }
-  return `${hz.toFixed(precision)}Hz`
+  return `${sign}${hz.toFixed(precision)}Hz`
 }
 
 // =====================
