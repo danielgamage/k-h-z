@@ -75,7 +75,7 @@ Supports positive and negative numbers.
 
 #### Defined in
 
-[src/index.ts:53](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L53)
+[src/index.ts:53](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L53)
 
 ___
 
@@ -88,7 +88,7 @@ Supports positive numbers.
 
 #### Defined in
 
-[src/index.ts:59](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L59)
+[src/index.ts:59](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L59)
 
 ___
 
@@ -101,7 +101,7 @@ Also accepts lowercase and keyboard-accessible accidentals like `bb3` and `b#3`.
 
 #### Defined in
 
-[src/index.ts:35](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L35)
+[src/index.ts:35](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L35)
 
 ___
 
@@ -121,7 +121,7 @@ Object with note properties for flexible formatting.
 
 #### Defined in
 
-[src/index.ts:69](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L69)
+[src/index.ts:69](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L69)
 
 ___
 
@@ -133,7 +133,7 @@ Integer pitch grouping, e.g. `-1`, `4`, `10`.
 
 #### Defined in
 
-[src/index.ts:64](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L64)
+[src/index.ts:64](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L64)
 
 ___
 
@@ -146,7 +146,7 @@ Supports positive numbers.
 
 #### Defined in
 
-[src/index.ts:41](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L41)
+[src/index.ts:41](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L41)
 
 ___
 
@@ -159,7 +159,7 @@ Supports positive and negative numbers.
 
 #### Defined in
 
-[src/index.ts:47](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L47)
+[src/index.ts:47](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L47)
 
 ## Variables
 
@@ -171,7 +171,7 @@ A4 frequency in Hz
 
 #### Defined in
 
-[src/index.ts:82](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L82)
+[src/index.ts:82](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L82)
 
 ___
 
@@ -183,7 +183,7 @@ Normalized note names in the chromatic scale, using sharps
 
 #### Defined in
 
-[src/index.ts:86](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L86)
+[src/index.ts:86](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L86)
 
 ___
 
@@ -195,7 +195,7 @@ Normalized note names in the chromatic scale, using flats
 
 #### Defined in
 
-[src/index.ts:103](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L103)
+[src/index.ts:103](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L103)
 
 ## Functions
 
@@ -211,10 +211,10 @@ centsToHz(1200) // 880
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `cents` | `number` |
-| `baseHz?` | `number` |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `cents` | `number` | `undefined` |
+| `baseHz` | `number` | `A4` |
 
 #### Returns
 
@@ -222,7 +222,7 @@ centsToHz(1200) // 880
 
 #### Defined in
 
-[src/index.ts:231](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L231)
+[src/index.ts:231](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L231)
 
 ___
 
@@ -248,7 +248,7 @@ centsToRatio(1200) // 2
 
 #### Defined in
 
-[src/index.ts:223](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L223)
+[src/index.ts:223](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L223)
 
 ___
 
@@ -274,7 +274,7 @@ centsToSemitones(100) // +1
 
 #### Defined in
 
-[src/index.ts:215](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L215)
+[src/index.ts:215](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L215)
 
 ___
 
@@ -303,7 +303,7 @@ cleanNoteName("bb4") // "B♭4"
 
 #### Defined in
 
-[src/index.ts:140](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L140)
+[src/index.ts:140](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L140)
 
 ___
 
@@ -333,7 +333,7 @@ formatHz(2325) // "2.33kHz"
 
 #### Defined in
 
-[src/index.ts:157](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L157)
+[src/index.ts:157](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L157)
 
 ___
 
@@ -353,13 +353,13 @@ ___
 
 #### Defined in
 
-[src/index.ts:124](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L124)
+[src/index.ts:124](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L124)
 
 ___
 
 ### hzToCents
 
-▸ **hzToCents**(`targetHz`, `baseHz`): [`Cents`](#cents)
+▸ **hzToCents**(`targetHz`, `baseHz?`): [`Cents`](#cents)
 
 **`Example`**
 
@@ -369,10 +369,10 @@ hzToCents(880, 440) // -1200
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `targetHz` | `number` |
-| `baseHz` | `number` |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `targetHz` | `number` | `undefined` |
+| `baseHz` | `number` | `A4` |
 
 #### Returns
 
@@ -380,7 +380,7 @@ hzToCents(880, 440) // -1200
 
 #### Defined in
 
-[src/index.ts:415](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L415)
+[src/index.ts:412](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L412)
 
 ___
 
@@ -410,7 +410,7 @@ hzToNoteName(263, Math.ceil) // C♯
 
 #### Defined in
 
-[src/index.ts:352](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L352)
+[src/index.ts:349](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L349)
 
 ___
 
@@ -430,7 +430,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:365](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L365)
+[src/index.ts:362](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L362)
 
 ___
 
@@ -458,7 +458,7 @@ hzToRatio(440, 880) // 0.5
 
 #### Defined in
 
-[src/index.ts:387](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L387)
+[src/index.ts:384](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L384)
 
 ___
 
@@ -485,7 +485,7 @@ hzToSemitones(880, 440) // -12
 
 #### Defined in
 
-[src/index.ts:401](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L401)
+[src/index.ts:398](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L398)
 
 ___
 
@@ -511,7 +511,7 @@ namedNoteToCents("C4") // -900
 
 #### Defined in
 
-[src/index.ts:276](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L276)
+[src/index.ts:273](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L273)
 
 ___
 
@@ -538,7 +538,7 @@ namedNoteToHz("A♯3") // 233.0819
 
 #### Defined in
 
-[src/index.ts:289](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L289)
+[src/index.ts:286](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L286)
 
 ___
 
@@ -566,7 +566,7 @@ namedNoteToRatio("A♯3") // 0.5
 
 #### Defined in
 
-[src/index.ts:265](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L265)
+[src/index.ts:262](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L262)
 
 ___
 
@@ -593,7 +593,7 @@ namedNoteToSemitones("A♯3") // -11
 
 #### Defined in
 
-[src/index.ts:245](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L245)
+[src/index.ts:244](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L244)
 
 ___
 
@@ -620,7 +620,7 @@ ratioToCents(3) // 1902
 
 #### Defined in
 
-[src/index.ts:334](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L334)
+[src/index.ts:331](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L331)
 
 ___
 
@@ -648,7 +648,7 @@ ratioToHz(3) // 1320
 
 #### Defined in
 
-[src/index.ts:318](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L318)
+[src/index.ts:315](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L315)
 
 ___
 
@@ -675,7 +675,7 @@ ratioToSemitones(3) // ~19.02
 
 #### Defined in
 
-[src/index.ts:305](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L305)
+[src/index.ts:302](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L302)
 
 ___
 
@@ -702,7 +702,7 @@ semitonesToCents(0.5) // 50
 
 #### Defined in
 
-[src/index.ts:188](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L188)
+[src/index.ts:188](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L188)
 
 ___
 
@@ -730,7 +730,7 @@ semitonesToHz(-3, 523.2511) // 440
 
 #### Defined in
 
-[src/index.ts:173](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L173)
+[src/index.ts:173](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L173)
 
 ___
 
@@ -757,4 +757,4 @@ semitonesToRatio(-12) // 0.5
 
 #### Defined in
 
-[src/index.ts:200](https://github.com/danielgamage/pitch-utils/blob/5f55005/src/index.ts#L200)
+[src/index.ts:200](https://github.com/danielgamage/pitch-utils/blob/fe57a66/src/index.ts#L200)
