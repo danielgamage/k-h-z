@@ -73,6 +73,12 @@ export type NoteObject = {
   detune: Cents
 }
 
+/**
+ * Rounding method for converting between frequency units.
+ * @todo maybe eventually this can include hz rounding in addition to pitch rounding
+ */
+export type RoundingMethod = "nearest" | "up" | "down"
+
 // =====================
 // constants
 // =====================
@@ -119,6 +125,18 @@ export const enharmonicChromaticScale = [
 // =====================
 // utils
 // =====================
+
+/**
+ * Selects a Math.* rounding function based on RoundingMethod union type
+ * @returns 
+ */
+export const getRoundingFunction = (roundingMethod: RoundingMethod) => {
+  return {
+    nearest: Math.round,
+    up: Math.ceil,
+    down: Math.floor,
+  }[roundingMethod];
+}
 /**
  *
  */
@@ -361,12 +379,9 @@ export function hzToNoteName(
   /** frequency of note in hertz */
   hz: Hz,
   /** whether to round up, down, or naturally */
-  rounding:
-    | typeof Math.round
-    | typeof Math.floor
-    | typeof Math.ceil = Math.round
+  roundingMethod: RoundingMethod = "nearest"
 ): string {
-  const note = rounding(12 * (Math.log(hz / 440) / Math.log(2))) + 69
+  const note = getRoundingFunction(roundingMethod)(12 * (Math.log(hz / 440) / Math.log(2))) + 69
   return chromaticScale[(note + 12 * 1000) % 12]
 }
 
@@ -428,9 +443,9 @@ export function hzToCents(targetHz: Hz, baseHz: Hz = A4): Cents {
 /**
  * @example ```js
  * const note = new Pitch(440)
- * note.note // "A4"
- * note.addRatio(3/1)
- * note.note // "E6"
+ * note.noteObject.note // "A4"
+ * note.modRatio(3/1)
+ * note.noteObject.note // "E6"
  * ```
  */
 export class Pitch {
@@ -440,6 +455,14 @@ export class Pitch {
     public frequency: Hz = A4
   ) {
     this.hz = frequency
+  }
+  /** initialize from NamedNote */
+  static fromNamedNote(
+    note: NoteName,
+  ) {
+    const instance = new Pitch()
+    instance.hz = namedNoteToHz(note)
+    return instance
   }
   
   get semitones(): Semitones {
@@ -451,29 +474,46 @@ export class Pitch {
   get ratio(): Ratio {
     return hzToRatio(this.hz)
   }
-  get note(): NoteName {
-    return hzToNoteName(this.hz)
-  }
+
   get noteObject(): NoteObject {
     return hzToNoteObject(this.hz)
   }
-
+  get closestNoteBelow(): NoteObject {
+    const snappedSemitones = Math.floor(this.semitones)
+    const snappedHz = semitonesToHz(snappedSemitones)
+    return hzToNoteObject(snappedHz)
+  }
+  get closestNoteAbove(): NoteObject {
+    const snappedSemitones = Math.ceil(this.semitones)
+    const snappedHz = semitonesToHz(snappedSemitones)
+    return hzToNoteObject(snappedHz)
+  }
+  
+  quantize(roundingMethod: "nearest" | "up" | "down" = "nearest") {
+    const snappedSemitones = getRoundingFunction(roundingMethod)(this.semitones)
+    this.hz = semitonesToHz(snappedSemitones)
+    return this
+  }
+  
   addSemitones(semitones: Semitones) {
     this.hz = semitonesToHz(semitones, this.hz)
     return this
   }
+  transpose = this.addSemitones
+  
+  shift(hz: Hz) {
+    this.hz += hz
+    return this
+  }
+  
   addCents(cents: Cents) {
     this.hz = centsToHz(cents, this.hz)
     return this
   }
-  addRatio(ratio: Ratio) {
+  detune = this.addCents
+  
+  modRatio(ratio: Ratio) {
     this.hz = ratioToHz(ratio, this.hz)
-    return this
-  }
-  fromNamedNote(
-    note: NoteName,
-  ) {
-    this.hz = namedNoteToHz(note)
     return this
   }
 }

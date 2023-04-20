@@ -62,18 +62,18 @@ describe("from Hz", function () {
     })
     describe("extended range notes", () => {
       const tests = [
-        {note: "C", octave: -2, hz: 4.088},
-        {note: "D", octave: -2, hz: 4.589},
-        {note: "F", octave: -2, hz: 5.457},
-        {note: "C", octave: -1, hz: 8.176},
-        {note: "E", octave: -1, hz: 10.030},
-        {note: "G♯", octave: -1, hz: 12.978},
-        {note: "A", octave: -1, hz: 13.75},
-        {note: "B", octave: -1, hz: 15.434},
-        {note: "B", octave: 10, hz: 31608.53},
-        {note: "B", octave: 12, hz: 126434.12},
+        { note: "C", octave: -2, hz: 4.088 },
+        { note: "D", octave: -2, hz: 4.589 },
+        { note: "F", octave: -2, hz: 5.457 },
+        { note: "C", octave: -1, hz: 8.176 },
+        { note: "E", octave: -1, hz: 10.03 },
+        { note: "G♯", octave: -1, hz: 12.978 },
+        { note: "A", octave: -1, hz: 13.75 },
+        { note: "B", octave: -1, hz: 15.434 },
+        { note: "B", octave: 10, hz: 31608.53 },
+        { note: "B", octave: 12, hz: 126434.12 },
       ]
-      tests.forEach(({note, octave, hz}) => {
+      tests.forEach(({ note, octave, hz }) => {
         test(`${hz} → ${note}${octave}`, () => {
           const result = khz.hzToNoteObject(hz)
           expect(result.note).toBe(note)
@@ -110,10 +110,10 @@ describe("from Hz", function () {
     describe("responds to rounding", () => {
       test(`260 → C`, () => expect(khz.hzToNoteName(260)).toBe("C"))
       test(`260 → B (floor)`, () =>
-        expect(khz.hzToNoteName(260, Math.floor)).toBe("B"))
+        expect(khz.hzToNoteName(260, "down")).toBe("B"))
       test(`263 → C`, () => expect(khz.hzToNoteName(263)).toBe("C"))
       test(`263 → C♯ (ceil)`, () =>
-        expect(khz.hzToNoteName(263, Math.ceil)).toBe("C♯"))
+        expect(khz.hzToNoteName(263, "up")).toBe("C♯"))
     })
   })
   describe("hzToSemitones", function () {
@@ -306,16 +306,63 @@ describe("from named note", () => {
   })
 })
 describe("Pitch class", () => {
-  test("initializes with A4", () => {
-    expect((new khz.Pitch()).hz).toBeCloseTo(440)
+  describe("initializers", () => {
+    describe("constructor()", () => {
+      test("initializes with A4", () => {
+        expect(new khz.Pitch().hz).toBeCloseTo(440)
+      })
+    })
+    describe(".fromNamedNote()", () => {
+      test("initializes from NamedNote", () => {
+        expect(khz.Pitch.fromNamedNote("A-1").hz).toBeCloseTo(13.75)
+        expect(khz.Pitch.fromNamedNote("A2").hz).toBeCloseTo(110)
+        expect(khz.Pitch.fromNamedNote("A3").hz).toBeCloseTo(220)
+      })
+    })
   })
-  test(".fromNamedNote", () => {
-    expect((new khz.Pitch().fromNamedNote("A2")).hz).toBeCloseTo(110)
+  describe("getters", () => {
+    test(".noteAbove/.noteBelow", () => {
+      const pitch = new khz.Pitch(730)
+      expect(pitch.closestNoteBelow.note).toBe("F")
+      expect(pitch.noteObject.note).toBe("F♯")
+      expect(pitch.closestNoteAbove.note).toBe("F♯")
+    })
   })
   test(".hz updates", () => {
-    expect((new khz.Pitch(440)).addRatio(3/2).hz).toBeCloseTo(440 * 3 / 2)
+    expect(new khz.Pitch(440).modRatio(3 / 2).hz).toBeCloseTo((440 * 3) / 2)
   })
-  test("chains", () => {
-    expect((new khz.Pitch(440)).addRatio(3/2).addSemitones(12).addCents(-2).semitones).toBeCloseTo(19)
+  describe("methods", () => {
+    describe(".quantize()", () => {
+      test("quantizing sharps", () => {
+        const sharp = new khz.Pitch(450)
+        expect(sharp.noteObject.note).toBe("A")
+        expect(sharp.noteObject.octave).toBe(4)
+        expect(sharp.noteObject.detune).toBeGreaterThan(0)
+        sharp.quantize()
+        expect(sharp.noteObject.note).toBe("A")
+        expect(sharp.noteObject.octave).toBe(4)
+        expect(sharp.noteObject.detune).toBe(0)
+      })
+      test("quantizing flats", () => {
+        const sharp = new khz.Pitch(430)
+        expect(sharp.noteObject.note).toBe("A")
+        expect(sharp.noteObject.octave).toBe(4)
+        expect(sharp.noteObject.detune).toBeLessThan(0)
+        sharp.quantize()
+        expect(sharp.noteObject.note).toBe("A")
+        expect(sharp.noteObject.octave).toBe(4)
+        expect(sharp.noteObject.detune).toBe(0)
+      })
+    })
+    describe("all methods", () => {
+      test("chain", () => {
+        expect(
+          new khz.Pitch(440)
+            .modRatio(3 / 2)
+            .addSemitones(12)
+            .addCents(-2).semitones
+        ).toBeCloseTo(19)
+      })
+    })
   })
 })
