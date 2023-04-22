@@ -1,7 +1,9 @@
 import { describe, test, expect } from "vitest"
 import * as khz from "./"
 
+const Aflat4 = 415.305
 const A4 = 440
+const Asharp4 = 466.1639
 const C5 = 523.2511306011972
 const A5 = 880
 
@@ -114,6 +116,18 @@ describe("from Hz", function () {
       test(`263 → C`, () => expect(khz.hzToNoteName(263)).toBe("C"))
       test(`263 → C♯ (ceil)`, () =>
         expect(khz.hzToNoteName(263, "up")).toBe("C♯"))
+    })
+    describe("quantizeHz", () => {
+      test("quantizing sharps", () => {
+        const sharp = 450
+        expect(khz.quantizeHz(sharp)).toBeCloseTo(A4)
+        expect(khz.quantizeHz(sharp, "up")).toBeCloseTo(Asharp4)
+      })
+      test("quantizing flats", () => {
+        const sharp = 430
+        expect(khz.quantizeHz(sharp)).toBeCloseTo(A4)
+        expect(khz.quantizeHz(sharp, "down")).toBeCloseTo(Aflat4)
+      })
     })
   })
   describe("hzToSemitones", function () {

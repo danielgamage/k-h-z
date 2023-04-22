@@ -442,6 +442,18 @@ export function hzToCents(targetHz: Hz, baseHz: Hz = A4): Cents {
 
 /**
  * @example ```js
+ * quantizeHz(450) // 440
+ * quantizeHz(450, "down") // 440
+ * quantizeHz(450, "up") // ~466.17
+ */
+export function quantizeHz(hz: Hz, roundingMethod: RoundingMethod = "nearest"): Hz {
+  const semitones = hzToSemitones(hz)
+  const snappedSemitones = getRoundingFunction(roundingMethod)(semitones)
+  return semitonesToHz(snappedSemitones)
+}
+
+/**
+ * @example ```js
  * const note = new Pitch(440)
  * note.noteObject.note // "A4"
  * note.modRatio(3/1)
@@ -489,9 +501,8 @@ export class Pitch {
     return hzToNoteObject(snappedHz)
   }
   
-  quantize(roundingMethod: "nearest" | "up" | "down" = "nearest") {
-    const snappedSemitones = getRoundingFunction(roundingMethod)(this.semitones)
-    this.hz = semitonesToHz(snappedSemitones)
+  quantize(roundingMethod: RoundingMethod = "nearest") {
+    this.hz = quantizeHz(this.hz, roundingMethod)
     return this
   }
   
