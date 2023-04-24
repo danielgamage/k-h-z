@@ -1,9 +1,12 @@
 {
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": ["./src/index.ts"],
-  "out": "./",
+  "out": "./docs",
+  "hideInPageTOC": true,
+  "hideBreadcrumbs": true,
+  "includeVersion": true,
   "plugin": ["typedoc-plugin-markdown"],
   "githubPages": false,
-  "readme": "none",
+  "readme": "./README.md",
   "cleanOutputDir": false,
 }

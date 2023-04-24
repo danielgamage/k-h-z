@@ -445,6 +445,7 @@ export function hzToCents(targetHz: Hz, baseHz: Hz = A4): Cents {
  * quantizeHz(450) // 440
  * quantizeHz(450, "down") // 440
  * quantizeHz(450, "up") // ~466.17
+ * ```
  */
 export function quantizeHz(hz: Hz, roundingMethod: RoundingMethod = "nearest"): Hz {
   const semitones = hzToSemitones(hz)
@@ -461,6 +462,9 @@ export function quantizeHz(hz: Hz, roundingMethod: RoundingMethod = "nearest"): 
  * ```
  */
 export class Pitch {
+  /**
+   * base value for calculations
+   */
   hz: Hz
   constructor(
     /** frequency of note in hertz */
@@ -468,7 +472,12 @@ export class Pitch {
   ) {
     this.hz = frequency
   }
-  /** initialize from NamedNote */
+  /** 
+   * initialize from NamedNote
+   * @example ```js
+   * Pitch.fromNamedNote("A3").hz // 220
+   * ```
+   */
   static fromNamedNote(
     note: NoteName,
   ) {
