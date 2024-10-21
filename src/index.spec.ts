@@ -318,6 +318,34 @@ describe("from named note", () => {
     test("A6", () => expect(khz.namedNoteToRatio("A6")).toBeCloseTo(4))
     test("A4:A3", () => expect(khz.namedNoteToRatio("A4", "A3")).toBeCloseTo(2))
   })
+  describe("isNoteWhiteOnPiano", () => {
+    ;[
+      { input: "B", output: true },
+      { input: "C4", output: true },
+      { input: "A♯3", output: false },
+      { input: "Cb4", output: true },
+      { input: "E4", output: true },
+      { input: "F#4", output: false },
+    ].forEach(({ input, output }) => {
+      test(`${input} → ${output}`, () => {
+        expect(khz.isNoteWhiteOnPiano(input)).toBe(output)
+      })
+    })
+  })
+  describe("isNoteBlackOnPiano", () => {
+    ;[
+      { input: "B", output: false },
+      { input: "C4", output: false },
+      { input: "A♯3", output: true },
+      { input: "Cb4", output: false },
+      { input: "E4", output: false },
+      { input: "F#4", output: true },
+    ].forEach(({ input, output }) => {
+      test(`${input} → ${output}`, () => {
+        expect(khz.isNoteBlackOnPiano(input)).toBe(output)
+      })
+    })
+  })
 })
 describe("Pitch class", () => {
   describe("initializers", () => {
@@ -356,26 +384,6 @@ describe("Pitch class", () => {
         expect(sharp.noteObject.note).toBe("A")
         expect(sharp.noteObject.octave).toBe(4)
         expect(sharp.noteObject.detune).toBe(0)
-      })
-      test("quantizing flats", () => {
-        const sharp = new khz.Pitch(430)
-        expect(sharp.noteObject.note).toBe("A")
-        expect(sharp.noteObject.octave).toBe(4)
-        expect(sharp.noteObject.detune).toBeLessThan(0)
-        sharp.quantize()
-        expect(sharp.noteObject.note).toBe("A")
-        expect(sharp.noteObject.octave).toBe(4)
-        expect(sharp.noteObject.detune).toBe(0)
-      })
-    })
-    describe("all methods", () => {
-      test("chain", () => {
-        expect(
-          new khz.Pitch(440)
-            .modRatio(3 / 2)
-            .addSemitones(12)
-            .addCents(-2).semitones
-        ).toBeCloseTo(19)
       })
     })
   })

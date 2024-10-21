@@ -122,26 +122,35 @@ export const enharmonicChromaticScale = [
   ["B", "C♭"],
 ]
 
+// named note is black on keyboard
+const whiteNoteOnPianoIndices = [0, 2, 4, 5, 7, 9, 11]
+export const whiteNotesOnPiano = enharmonicChromaticScale
+  .filter((el, i) => whiteNoteOnPianoIndices.includes(i))
+  .flat()
+export const blackNotesOnPiano = enharmonicChromaticScale
+  .filter((el, i) => !whiteNoteOnPianoIndices.includes(i))
+  .flat()
+
 // =====================
 // utils
 // =====================
 
 /**
  * Selects a Math.* rounding function based on RoundingMethod union type
- * @returns 
+ * @returns
  */
 export const getRoundingFunction = (roundingMethod: RoundingMethod) => {
   return {
     nearest: Math.round,
     up: Math.ceil,
     down: Math.floor,
-  }[roundingMethod];
+  }[roundingMethod]
 }
 /**
  *
  */
 export const getNoteIndexInOctave = (note: string) => {
-  let scaleIndex = enharmonicChromaticScale.findIndex(el => el.includes(note))
+  let scaleIndex = enharmonicChromaticScale.findIndex((el) => el.includes(note))
   // center around A4
   if (scaleIndex > -1) {
     return -9 + scaleIndex
@@ -319,6 +328,24 @@ export function namedNoteToHz(
   return semitonesToHz(namedNoteToSemitones(note))
 }
 
+/**
+ * @example ```js
+ * isNoteWhiteOnPiano("C4") // true
+ * isNoteWhiteOnPiano("A♯3") // false
+ * ```
+ */
+export const isNoteWhiteOnPiano = (note: NoteName) =>
+  whiteNotesOnPiano.includes(cleanNoteName(note).replace(/\d/g, ""))
+
+/**
+ * @example ```js
+ * isNoteBlackOnPiano("Cb4") // false
+ * isNoteBlackOnPiano("A♯3") // true
+ * ```
+ */
+export const isNoteBlackOnPiano = (note: NoteName) =>
+  blackNotesOnPiano.includes(cleanNoteName(note).replace(/\d/g, ""))
+
 // =====================
 // from ratio
 // =====================
@@ -381,7 +408,10 @@ export function hzToNoteName(
   /** whether to round up, down, or naturally */
   roundingMethod: RoundingMethod = "nearest"
 ): string {
-  const note = getRoundingFunction(roundingMethod)(12 * (Math.log(hz / 440) / Math.log(2))) + 69
+  const note =
+    getRoundingFunction(roundingMethod)(
+      12 * (Math.log(hz / 440) / Math.log(2))
+    ) + 69
   return chromaticScale[(note + 12 * 1000) % 12]
 }
 
@@ -447,7 +477,10 @@ export function hzToCents(targetHz: Hz, baseHz: Hz = A4): Cents {
  * quantizeHz(450, "up") // ~466.17
  * ```
  */
-export function quantizeHz(hz: Hz, roundingMethod: RoundingMethod = "nearest"): Hz {
+export function quantizeHz(
+  hz: Hz,
+  roundingMethod: RoundingMethod = "nearest"
+): Hz {
   const semitones = hzToSemitones(hz)
   const snappedSemitones = getRoundingFunction(roundingMethod)(semitones)
   return semitonesToHz(snappedSemitones)
@@ -472,20 +505,18 @@ export class Pitch {
   ) {
     this.hz = frequency
   }
-  /** 
+  /**
    * initialize from NamedNote
    * @example ```js
    * Pitch.fromNamedNote("A3").hz // 220
    * ```
    */
-  static fromNamedNote(
-    note: NoteName,
-  ) {
+  static fromNamedNote(note: NoteName) {
     const instance = new Pitch()
     instance.hz = namedNoteToHz(note)
     return instance
   }
-  
+
   get semitones(): Semitones {
     return hzToSemitones(this.hz)
   }
@@ -509,29 +540,29 @@ export class Pitch {
     const snappedHz = semitonesToHz(snappedSemitones)
     return hzToNoteObject(snappedHz)
   }
-  
+
   quantize(roundingMethod: RoundingMethod = "nearest") {
     this.hz = quantizeHz(this.hz, roundingMethod)
     return this
   }
-  
+
   addSemitones(semitones: Semitones) {
     this.hz = semitonesToHz(semitones, this.hz)
     return this
   }
   transpose = this.addSemitones
-  
+
   shift(hz: Hz) {
     this.hz += hz
     return this
   }
-  
+
   addCents(cents: Cents) {
     this.hz = centsToHz(cents, this.hz)
     return this
   }
   detune = this.addCents
-  
+
   modRatio(ratio: Ratio) {
     this.hz = ratioToHz(ratio, this.hz)
     return this
